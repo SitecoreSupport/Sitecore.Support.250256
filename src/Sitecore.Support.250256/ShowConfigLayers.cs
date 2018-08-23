@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-namespace Sitecore.sitecore.admin
+namespace Sitecore.Support.sitecore.admin
 {
   /// <summary>
   /// Admin page that shows configuration and layers details
@@ -31,6 +31,8 @@ namespace Sitecore.sitecore.admin
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected ListBox RolesList;
+
+    protected ListBox SearchList;
 
     /// <summary>
     /// RoleTextBox control.
@@ -161,6 +163,11 @@ namespace Sitecore.sitecore.admin
       UpdateConfigPage();
     }
 
+    protected void SearchList_OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+      UpdateConfigPage();
+    }
+
     /// <summary>
     /// Updates the result config page.
     /// </summary>
@@ -168,7 +175,12 @@ namespace Sitecore.sitecore.admin
     {
       string selectedLayers = GetSelectedLayers();
       string selectedRoles = GetSelectedRoles();
-      string text = $"/sitecore/admin/showconfig.aspx?layer={selectedLayers}&role={selectedRoles}";
+      string selectedSearch = "Lucene";
+      if (SearchList.SelectedItem != null)
+      {
+        selectedSearch = SearchList.SelectedItem.ToString();
+      }
+      string text = $"/sitecore/admin/showconfig.aspx?layer={selectedLayers}&role={selectedRoles}&search={selectedSearch}";
       ConfigPage.Src = text;
       ConfigPageLink.NavigateUrl = text;
     }

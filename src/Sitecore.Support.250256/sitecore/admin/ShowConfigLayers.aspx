@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowConfigLayers.aspx.cs" Inherits="Sitecore.sitecore.admin.ShowConfigLayers" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowConfigLayers.aspx.cs" Inherits="Sitecore.Support.sitecore.admin.ShowConfigLayers" %>
 
 <!DOCTYPE html>
 
@@ -84,6 +84,15 @@
         </div>
         <asp:TextBox runat="server" ID="RoleTextBox" Width="195px"></asp:TextBox>
         <asp:Button runat="server" ID="AddRoleButton" Text="Add role" OnClick="AddRoleButton_OnClick" />
+                
+        <h1>Configuration search</h1>
+        <div id="search-list-wrapper">
+            <asp:ListBox runat="server" ID="SearchList" Rows="3" Width="200px" SelectionMode="Single" AutoPostBack="True" OnSelectedIndexChanged="SearchList_OnSelectedIndexChanged">
+                <asp:ListItem>Lucene</asp:ListItem>
+                <asp:ListItem>Solr</asp:ListItem>
+                <asp:ListItem>Azure</asp:ListItem>
+            </asp:ListBox>
+        </div>
 
         <h1>Configuration result</h1>
         <div id="ConfigPageWrapper">
